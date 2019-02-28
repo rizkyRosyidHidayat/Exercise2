@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kalakulator | Exercise 2</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+	
+	<div class="card w-25 m-5 shadow">
+		<table class="table">
+			<tr>
+				<td colspan="3">
+					<input type="text" name="bilangan" id="layarBil" class="form-control" readonly autofocus />
+				</td>
+				<td colspan="1">
+					<input type="text" name="operator" id="layarOp" class="form-control" readonly />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><button class="btn btn-secondary w-100" onclick="hasil()">C</button></td>
+				<td colspan="2"><button class="btn btn-secondary w-100" onclick="hasil()">=</button></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(7)">7</button></td>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(8)">8</button></td>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(9)">9</button></td>
+				<td><button class="btn btn-secondary w-100" onclick="inputOpe('+')">+</button></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(4)">4</button></td>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(5)">5</button></td>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(6)">6</button></td>
+				<td><button class="btn btn-secondary w-100" onclick="inputOpe('-')">-</button></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(1)">1</button></td>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(2)">2</button></td>
+				<td><button class="btn btn-primary w-100" onclick="inputBil(3)">3</button></td>
+				<td><button class="btn btn-secondary w-100" onclick="inputOpe('/')">/</button></td>
+			</tr>
+			<tr>
+				<td colspan="3"><button class="btn btn-primary w-100 w-100" onclick="inputBil(0)">0</button></td>
+				<td colspan="1"><button class="btn btn-secondary w-100" onclick="inputOpe('*')">*</button></td>
+			</tr>
+		</table>
+	</div>
+
+	<script type="text/javascript">
+		var arrBil = [];
+		
+		function inputBil(bil){
+			document.querySelector("#layarBil").value = bil;
+		}
+
+		function inputOpe(op){
+			document.querySelector("#layarOp").value = op;	
+			var bil = document.querySelector("#layarBil").value;
+			arrBil.push(bil);				
+		}
+
+		function hasil() {
+			var bil = document.querySelector("#layarBil").value;
+			arrBil.push(bil);
+			var op = document.querySelector("#layarOp").value;
+			var bil1 = parseInt(arrBil[0]);
+			var bil2 = parseInt(arrBil[1]);
+			switch(op){
+				case '+': var hasil = bil1 + bil2;break;
+				case '-': var hasil = bil1 - bil2;break;
+				case '*': var hasil = bil1 * bil2;break;
+				case '/': var hasil = bil1 / bil2;break;
+				default: var hasil = 0;
+			}
+			document.querySelector("#layarBil").value = hasil;
+			document.querySelector("#layarOp").value = '';
+			arrBil.splice(0, 2);
+		}
+	</script>
+</body>
+</html>
